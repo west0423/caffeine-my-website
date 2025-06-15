@@ -1,0 +1,341 @@
+/* 全体の設定 */
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'M PLUS 1p', sans-serif;
+  font-weight: 900;  /* Blackにしたい場合 */ 
+  color: #391e00;  /* 文字の色をダークグレーに設定 */
+  background-image: url('img/background-gray.png');
+  background-repeat: repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  scroll-behavior: smooth;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(254, 199, 0, 0.47);
+  z-index: 0;
+  pointer-events: none;
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* メニューバー */
+.menu-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff00;
+  padding: 10px 40px;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.menu-bar nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.menu-bar ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 20px;
+}
+
+.menu-bar a {
+  color: #573000;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 5px 10px;
+}
+
+.menu-bar a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .menu-bar nav {
+    justify-content: center;
+  }
+  .menu-bar ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .menu-bar {
+    padding: 20px;
+  }
+}
+
+/* Hero */
+.hero-text {
+  padding: 20px 40px;
+  box-sizing: border-box;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+#hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.hero-container {
+  position: relative;
+  width: 100%;
+  height: 200px;  /* 小さくしました */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.hero-container > img.topimage {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;  /* 小さい画像に整理 */
+  z-index: 1;
+}
+
+
+
+.hero-container > img.bubble {
+  position: absolute;
+  left: 50%;
+  transform:  translateX(-50%) translateY(20px);
+  z-index: 2;
+ opacity: 0;
+  animation: mokumoku 1s ease forwards;
+}
+
+/* 吹き出しごとの大きさや位置の差別化 */
+.hero-container > img.bubble.small {
+  width: 500px;      /* 小さめ */
+  bottom: 80%;       /* 位置を少し低め */
+  animation-delay: 0s;
+}
+
+.hero-container > img.bubble.midiam {
+  width: 700px;
+  bottom: 95%;
+  animation-delay: 0.5s;
+}
+
+.hero-container > img.bubble.big {
+  width: 1000px;
+  bottom: 120%;       /* 一番上の方 */
+  animation-delay: 1s;
+}
+
+@keyframes mokumoku {
+  to {
+    transform: translateX(-50%) translateY(0);
+   opacity: 1;
+  }
+}
+
+
+
+@media (max-width: 768px) {
+  .hero-text h1 {
+    font-size: 1.5rem;
+  }
+  .hero-text p {
+    font-size: 0.9rem;
+  }
+}
+
+/* About */
+.about-text {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.about-text p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+#about {
+  padding: 40px;
+  margin-bottom: 60px;
+}
+
+
+
+/* Main, Impact Blocks */
+
+
+.image-wrapper {
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 150px 170px;
+  border-radius: 20px;
+  width: fit-content;
+  margin: 40px auto;
+  box-shadow: 0 6px 20px rgb(0 0 0 / 10%)
+}
+
+
+.impact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 300px;
+}
+
+
+.impact-list li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 140px;
+}
+
+.impact-text {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.impact-image {
+  width: 300px;
+  height: auto;
+  display: block;
+  margin-bottom: 20px; /* 画像の下に20pxの余白を追加 */
+}
+
+
+
+
+.impact-low {
+  background-color: #c1a66c82;
+  padding: 20px;
+  border-radius: 10px;
+
+  text-align: center;    /* テキストを中央揃えに */
+
+}
+.impact-low h2,
+.impact-low p {
+  margin: 0 auto 10px;   /* 上下の余白調整（下に10px） */
+  max-width: fit-content; /* テキスト幅を縮めて中央に */
+}
+
+.impact-mid {
+  background-color: #a87b0073;
+  padding: 20px;
+  border-radius: 10px;
+
+  text-align: center;    /* テキストを中央揃えに */
+}
+.impact-mid h2.fade-in {
+  margin-top: 40px; /* お好みで調整してください */
+}
+
+.impact-mid p {
+  margin: 0 auto 10px;   /* 上下の余白調整（下に10px） */
+  max-width: fit-content; /* テキスト幅を縮めて中央に */
+}
+
+.impact-high {
+  background-color: #7142006b;
+  padding: 20px;
+  border-radius: 10px;
+
+  text-align: center;    /* テキストを中央揃えに */
+}
+.impact-high h2,
+fade-in {
+  margin-top: 40px; /* お好みで調整してください */
+}
+.impact-high p {
+  margin: 0 auto 10px;   /* 上下の余白調整（下に10px） */
+  max-width: fit-content; /* テキスト幅を縮めて中央に */
+}
+
+.impact-block {
+  font-size: 1.2rem;  /* もとの1.1remより少し大きめに調整 */
+  line-height: 1.5;   /* 行間も少し広くすると読みやすい */
+}
+@media (max-width: 768px) {
+  .impact-list li {
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+}
+
+.center {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.small-img {
+  display: inline-block;
+  max-width: 20%;
+  height: auto;
+}
+
+
+/* JavaScript */
+.fade-in {
+  transform: translateY(20px);
+  opacity: 0;
+  transition: transform 2.0s ease, opacity 2.0s ease;
+}
+
+.fade-in.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+
+.about-text .fade-item {
+  margin-bottom: 0.1em;  /* この値を少なくすれば行間も詰まります */
+  transform: translateY(20px);
+  opacity: 0;
+  transition: transform 1s ease, opacity 1s ease;
+}
+
+.fade-item.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+
+
+
+
+  
+  
+
+
+  
+  
+  
