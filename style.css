@@ -1,0 +1,534 @@
+/* 全体の設定 */
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'M PLUS 1p', sans-serif;
+  font-weight: 900;  /* Blackにしたい場合 */ 
+  color: #391e00;  /* 文字の色をダークグレーに設定 */
+  background-image: url('img/background-gray.jpg');
+  background-repeat: repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  scroll-behavior: smooth;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(254, 199, 0, 0.47);
+  z-index: 0;
+  pointer-events: none;
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* メニューバー */
+.menu-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff00;
+  padding: 10px 40px;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.menu-bar nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+}
+
+/* ハンバーガーアイコン */
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #573000;
+}
+
+/* メニューリスト */
+.menu-list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 20px;
+}
+
+.menu-list a {
+  color: #573000;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 5px 10px;
+}
+
+.menu-list a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .menu-bar {
+    padding: 10px 20px;
+  }
+
+  .menu-bar nav {
+    justify-content: flex-start; /* 左詰めに戻す */
+    position: relative;
+  }
+
+  .menu-toggle {
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 20px; /* ← 右上に固定 */
+    z-index: 1100;
+  }
+
+  .menu-list {
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 50px; /* ← ハンバーガーの下に出す */
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.221);
+    width: 100%;
+    padding: 20px 0;
+    display: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .menu-list.open {
+    display: flex;
+  }
+}
+
+
+/* Hero */
+.hero-text {
+  padding: 20px 40px;
+  box-sizing: border-box;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+#hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.hero-container {
+  position: relative;
+  width: 100%;
+  height: 200px;  /* 小さくしました */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.hero-container > img.topimage {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;  /* 小さい画像に整理 */
+  z-index: 1;
+}
+
+
+
+.hero-container > img.bubble {
+  position: absolute;
+  left: 50%;
+  transform:  translateX(-50%) translateY(20px);
+  z-index: 2;
+ opacity: 0;
+  animation: mokumoku 1s ease forwards;
+}
+
+/* 吹き出しごとの大きさや位置の差別化 */
+.hero-container > img.bubble.small {
+  width: 500px;      /* 小さめ */
+  bottom: 80%;       /* 位置を少し低め */
+  animation-delay: 0s;
+}
+
+.hero-container > img.bubble.midiam {
+  width: 700px;
+  bottom: 95%;
+  animation-delay: 0.5s;
+}
+
+.hero-container > img.bubble.big {
+  width: 1000px;
+  bottom: 120%;       /* 一番上の方 */
+  animation-delay: 1s;
+}
+
+@keyframes mokumoku {
+  to {
+    transform: translateX(-50%) translateY(0);
+   opacity: 1;
+  }
+}
+
+
+
+@media (max-width: 768px) {
+  .hero-container {
+    margin-top: 0;    /* 念のため余白削除 */
+    height: 180px;    /* 高さも少しだけ縮める */
+    align-items: flex-start;  /* ← これを追加！ */
+  }
+
+  .hero-container > img.topimage {
+    width: 190px;
+    top: 40%;
+  }
+
+  .hero-container > img.bubble.small {
+    width: 275px;   /* ← 大きめに調整 */
+    bottom: 105%;
+  }
+
+  .hero-container > img.bubble.midiam {
+    width: 355px;
+    bottom: 120%;
+  }
+
+  .hero-container > img.bubble.big {
+    width: 415px;
+    bottom: 145%;
+  }
+  .hero {
+    padding: 10px 0;  /* Heroセクションの上下paddingを最小限に */
+  }
+}
+
+
+
+
+/* About */
+.about-text {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.about-text p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  white-space: normal;
+  word-wrap: break-word;
+}
+/* スマホだけ改行を表示 */
+.sp-br {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .about-text p {
+    font-size: 0.8rem;        /* 通常は1.2rem → スマホでは少し小さめに */
+    line-height: 1.7;       /* 行間も気持ち詰めて読みやすく */
+  }
+
+  .about-text h2 {
+    font-size: 1.2rem;      /* h2も少し調整するならここ */
+  }
+
+  #about {
+    padding: 20px;          /* 全体の余白も少しだけコンパクトに */
+  }
+
+  .about {
+    padding-top: 10px;  /* 上の空間をさらに縮める */
+    margin-top: 0;
+}
+}
+
+
+
+#about {
+  padding: 40px;
+  margin-bottom: 60px;
+}
+
+
+
+
+
+
+/* Main, Impact Blocks */
+
+
+.image-wrapper {
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 150px 170px;
+  border-radius: 20px;
+  width: fit-content;
+  margin: 40px auto;
+  box-shadow: 0 6px 20px rgb(0 0 0 / 10%)
+}
+@media (max-width: 768px) {
+  .image-wrapper {
+    width: 90%;
+    padding: 30px 15px;      /* パディングを小さく */
+    box-sizing: border-box; /* パディングを含めてサイズ計算 */
+    overflow-x: hidden;
+  }
+
+  .impact-image {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+  }
+
+  .impact-list li {
+    margin-bottom: 60px;
+  }
+}
+
+
+
+.impact-list {
+  display: flex;
+  flex-direction: column; /* ← これを追加 */
+  gap: 2rem; /* 項目同士のスペース */
+  align-items: center; /* 各要素を中央寄せ */
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.impact-list li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 140px;
+}
+
+.impact-text {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.impact-image {
+  width: 300px;
+  height: auto;
+  display: block;
+  margin-bottom: 20px; /* 画像の下に20pxの余白を追加 */
+}
+@media (max-width: 768px) {
+  .impact-image {
+    width: 180px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 20px; /* 必要なら中央寄せ＋下余白 */
+  }
+}
+
+
+
+
+
+.impact-low {
+  padding: 5px 20px 20px 20px;
+  background-color: #e0c89682;
+  border-radius: 10px;
+text-align: center;    /* テキストを中央揃えに */
+
+}
+.impact-low h2,
+.impact-low p {
+  margin: 0 auto 10px;   /* 上下の余白調整（下に10px） */
+  max-width: fit-content; /* テキスト幅を縮めて中央に */
+}
+
+.impact-mid {
+  background-color: #a87b0073;
+  padding: 20px;
+  border-radius: 10px;
+
+  text-align: center;    /* テキストを中央揃えに */
+}
+.impact-mid h2.fade-in {
+  margin-top: 40px; /* お好みで調整してください */
+}
+
+.impact-mid p {
+  margin: 0 auto 10px;   /* 上下の余白調整（下に10px） */
+  max-width: fit-content; /* テキスト幅を縮めて中央に */
+}
+
+.impact-high {
+  background-color: #7142006b;
+  padding: 20px;
+  border-radius: 10px;
+
+  text-align: center;    /* テキストを中央揃えに */
+}
+.impact-high h2,
+fade-in {
+  margin-top: 40px; /* お好みで調整してください */
+}
+.impact-high p {
+  margin: 0 auto 10px;   /* 上下の余白調整（下に10px） */
+  max-width: fit-content; /* テキスト幅を縮めて中央に */
+}
+
+.impact-block {
+  font-size: 1.2rem;  /* もとの1.1remより少し大きめに調整 */
+  line-height: 1.5;   /* 行間も少し広くすると読みやすい */
+}
+
+.center {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.small-img {
+  display: inline-block;
+  max-width: 20%;
+  height: auto;
+  margin-top: 30px;  /* 画像の上に30pxの余白を空けます */
+}
+
+.jump-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.jump-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #7b4800;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.jump-btn:hover {
+  background-color: #88622c;
+}
+@media (max-width: 600px) {
+  .jump-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .jump-btn {
+    width: 70%;
+    text-align: center;
+  }
+}
+
+
+/* 説明イラスト */
+.setumei-img {
+  display: block;
+  margin: 0 auto 100px;  /* 下に30px空く */;
+  padding: 0;
+  width: 50%;
+  transform: translateX(20px);  /* 20px分左に移動 */
+}
+@media (max-width: 768px) {
+  .setumei-img {
+    width: 90%;         /* 画面の90%幅で表示 */
+    max-width: 400px;   /* 必要に応じてさらに大きくできる */
+    height: auto;       /* 比率は保つ */
+    display: block;
+    margin: 0 auto;     /* 中央に寄せる */
+  }
+}
+
+
+/* JavaScript */
+.fade-in {
+  transform: translateY(20px);
+  opacity: 0;
+  transition: transform 2.0s ease, opacity 2.0s ease;
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 30px;  /* 30px分の余白を下に空けます */
+  display: block;
+}
+
+.fade-in.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+
+.about-text .fade-item {
+  margin-bottom: 0.1em;  /* この値を少なくすれば行間も詰まります */
+  transform: translateY(20px);
+  opacity: 0;
+  transition: transform 1s ease, opacity 1s ease;
+}
+
+.fade-item.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+
+ /* サブタイトルサイズ */
+.large-text {
+  font-size: 2.5rem;  /* お好みに調整してね */
+  text-align: center;
+  margin:50px;  /* 50px分の余白を下に空けます */
+
+  display: block;
+}
+
+ /* カフェイン含有量 */
+.caffeine-large-img {
+  width: 200%;       /* 例：親コンテナの幅いっぱいに拡大 */
+  max-width: 900px;  /* 最大幅を指定して大きくしすぎないように調整 */
+  height: auto;      /* 高さは自動で調整 */
+  display: block;
+  margin: 0 auto;    /* 中央寄せ */
+  margin: 0 auto 70px; /* 下に20pxの余白を追加 */
+}
+@media (max-width: 768px) {
+  .caffeine-large-img {
+    width: 90%;          /* 画面の90%まで使う */
+    max-width: 400px;    /* 最大サイズも広げる */
+    height: auto;
+  }
+}
+
+
+/* 横スクロール防止 */
+body {
+  overflow-x: hidden;
+}
