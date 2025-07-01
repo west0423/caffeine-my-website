@@ -1,0 +1,646 @@
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* 全体の設定 */
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'M PLUS 1p', sans-serif;
+  font-weight: 900;  /* Blackにしたい場合 */ 
+  color: #391e00;  
+  background-image: url('img/background-gray.jpg');
+  background-repeat: repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  scroll-behavior: smooth;
+  
+}
+/* スマホ用：幅768px以下 */
+@media screen and (max-width: 768px) {
+  body, html {
+    background-image: url('img/background-gray-sp.jpg'); /* ← スマホ用背景 */
+    background-size: cover;
+    background-attachment: scroll; /* 固定だとガビガビになる場合あり */
+  }
+}
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(254, 199, 0, 0.47);
+  z-index: 0;
+  pointer-events: none;
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* メニューバー */
+.menu-bar {
+  position: fixed;      /* ← 画面上に固定 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: transparent; /* 背景なし */
+  z-index: 1000;
+  padding: 10px 20px;
+}
+
+.menu-bar nav {
+  position: relative; /* メニューリストの絶対配置基準にする */
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-end; /* ハンバーガーボタン右端 */
+  align-items: center;
+}
+
+.menu-toggle {
+  display: block;          /* 常に表示 */
+  font-size: 32px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #573000;
+  padding: 8px 12px;
+  transition: background-color 0.3s ease;
+}
+
+.menu-toggle:hover {
+  background-color: rgba(210, 166, 90, 0.15);
+  border-radius: 6px;
+}
+
+.menu-list {
+  display: none;          /* 初期は非表示 */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 50px;              /* ボタンの真下 */
+  right: 0;               /* 右端寄せ */
+  width: 180px;
+  background-color: #d2a65a;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  flex-direction: column;
+  z-index: 1000;
+}
+
+.menu-list.open {
+  display: flex;          /* openクラスで表示 */
+}
+
+.menu-list li {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.menu-list li:last-child {
+  border-bottom: none;
+}
+
+.menu-list li a {
+  color: #573000;
+  text-decoration: none;
+  display: block;
+}
+
+
+
+
+
+
+
+/* Hero */
+.hero-text {
+  padding: 20px 40px;
+  box-sizing: border-box;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+#hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.hero-container {
+  position: relative;
+  width: 100%;
+  height: 200px; 
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.hero-container > img.topimage {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;  
+  z-index: 1;
+}
+
+
+
+.hero-container > img.bubble {
+  position: absolute;
+  left: 50%;
+  transform:  translateX(-50%) translateY(20px);
+  z-index: 2;
+
+}
+
+/* 吹き出しごとの大きさや位置の差別化 */
+.hero-container > img.bubble.small {
+  width: 500px;      
+  bottom: 80%;       
+
+}
+
+.hero-container > img.bubble.midiam {
+  width: 700px;
+  bottom: 95%;
+
+}
+
+.hero-container > img.bubble.big {
+  width: 1000px;
+  bottom: 120%;       
+
+}
+
+@keyframes mokumoku {
+  to {
+    transform: translateX(-50%) translateY(0);
+   opacity: 1;
+  }
+}
+
+
+
+@media (max-width: 768px) {
+  .hero-container > img.bubble.small {
+    width: 275px;
+    bottom: 105%;
+  }
+
+  .hero-container > img.bubble.midiam {
+    width: 355px;
+    bottom: 120%;
+  }
+
+  .hero-container > img.bubble.big {
+    width: 415px;
+    bottom: 145%;
+  }
+
+  .hero-container > img.bubble {
+    transform: translateX(-50%) translateY(0); /* ←必ずこちら */
+    opacity: 1;
+    /* animation: none; ←これでも良いが、上で無効化してるのでOK */
+  }
+}
+
+
+
+
+
+#about {
+  padding: 40px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  color: #391e00;
+  font-family: 'M PLUS 1p', sans-serif;
+  line-height: 1.8;
+}
+
+#about h2 {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+}
+
+#about p {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+/* スマホ対応 */
+@media screen and (max-width: 480px) {
+  #about {
+    padding: 20px 15px;
+  }
+  #about h2 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+  }
+  #about p {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    line-height: 1.6;
+  }
+  /* <br class="sp-br"> はスマホだけで表示したいなら */
+  .sp-br {
+    display: inline;
+  }
+}
+
+/* PC以上では .sp-br は改行として使わない場合 */
+.sp-br {
+  display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Main, Impact Blocks */
+
+
+.image-wrapper {
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 150px 170px;
+  border-radius: 20px;
+  width: fit-content;
+  margin: 40px auto;
+  box-shadow: 0 6px 20px rgb(0 0 0 / 10%)
+}
+@media (max-width: 768px) {
+  .image-wrapper {
+    width: 90%;
+    padding: 30px 15px;    
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  .impact-image {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+  }
+
+  .impact-list li {
+    margin-bottom: 60px;
+  }
+}
+
+
+
+.impact-list {
+  display: flex;
+  flex-direction: column; 
+  gap: 2rem; /* 項目同士のスペース */
+  align-items: center; /* 各要素を中央寄せ */
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.impact-list li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 140px;
+}
+
+.impact-text {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.impact-image {
+  width: 300px;
+  height: auto;
+  display: block;
+  margin-bottom: 20px; /* 画像の下に20pxの余白を追加 */
+}
+@media (max-width: 768px) {
+  .impact-image {
+    width: 180px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 20px;
+  }
+}
+
+
+
+
+
+.impact-low {
+  padding: 5px 20px 20px 20px;
+  background-color: #e0c89682;
+  border-radius: 10px;
+text-align: center;  
+
+}
+.impact-low h2,
+.impact-low p {
+  margin: 0 auto 10px;   /* 上下の余白調整（下に10px） */
+  max-width: fit-content; 
+}
+
+.impact-mid {
+  background-color: #a87b0073;
+  padding: 20px;
+  border-radius: 10px;
+
+  text-align: center;    
+}
+.impact-mid h2.fade-in {
+  margin-top: 40px; 
+}
+
+.impact-mid p {
+  margin: 0 auto 10px;   /* 上下の余白調整（下に10px） */
+  max-width: fit-content;
+}
+
+.impact-high {
+  background-color: #7142006b;
+  padding: 20px;
+  border-radius: 10px;
+
+  text-align: center;   
+}
+.impact-high h2,
+fade-in {
+  margin-top: 40px; 
+}
+.impact-high p {
+  margin: 0 auto 10px;  
+  max-width: fit-content; 
+}
+
+.impact-block {
+  font-size: 1.2rem;  
+  line-height: 1.5;   
+}
+
+.center {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.small-img {
+  display: inline-block;
+  max-width: 20%;
+  height: auto;
+  margin-top: 30px;  
+}
+
+.jump-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.jump-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #7b4800;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.jump-btn:hover {
+  background-color: #88622c;
+}
+@media (max-width: 600px) {
+  .jump-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .jump-btn {
+    width: 70%;
+    text-align: center;
+  }
+}
+
+
+/* 説明イラスト */
+.setumei-img {
+  display: block;
+  margin: 0 auto 100px; 
+  padding: 0;
+  width: 50%;
+  transform: translateX(20px); 
+}
+@media (max-width: 768px) {
+  .setumei-img {
+    width: 90%;         
+    max-width: 400px;   
+    height: auto;     
+    display: block;
+    margin: 0 auto; 
+  }
+}
+
+
+/* JavaScript */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.fade-in.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+.about-text .fade-item {
+  margin-bottom: 0.1em;  /* この値を少なくすれば行間も詰まります */
+  transform: translateY(20px);
+  opacity: 0;
+  transition: transform 1s ease, opacity 1s ease;
+}
+
+.fade-item.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+
+ /* サブタイトルサイズ */
+.large-text {
+  font-size: 2.5rem; 
+  text-align: center;
+  margin:50px;  
+
+  display: block;
+}
+
+
+
+
+/* ↓ スマホ用だけに限定して追記： */
+@media screen and (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+}
+
+#sub {
+  text-align: center;
+  margin: 20px 0; /* 上下に少し余白（必要に応じて） */
+}
+
+
+/* モーダル */
+/* カバー（白背景） */
+.cover-box {
+  background-color: rgb(255, 235, 188);
+  color: #3b2b1f;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 60px 20px;
+  width: 100%;
+  max-width: 380px;
+  margin: 100px auto;
+  cursor: pointer;
+  border-radius: 16px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: background-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+
+
+/* モーダル全体の背景 */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* モーダル内のコンテンツ */
+.modal-content {
+  position: relative;
+  margin: 50px auto;
+  max-width: 90%;
+  max-height: 90%;
+  text-align: center;
+}
+
+.modal-content img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 30px;
+  color: rgb(255, 235, 188);
+  cursor: pointer;
+  z-index: 1000;
+}
+
+/* PC時のモーダル画像2（最大摂取量）サイズ */
+.modal-content img.modal-img-small {
+  width: auto;
+  height: auto;
+  max-width: 600px;
+  max-height: 80vh;
+  display: block;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
+/* カバー2の下に余白（フッターとの重なり回避） */
+#openModal2 {
+  margin-bottom: 100px;
+}
+
+/* レスポンシブ調整 */
+@media screen and (max-width: 768px) {
+  .modal-content img.modal-img-small {
+    max-width: 90vw;
+    max-height: 70vh;
+  }
+}
+
+
+/* フッター全体 */
+.smart-footer {
+  background-color: rgba(255, 250, 229, 0.95);
+  color: #391e00;
+  padding: 10px 0;            /* 上下の余白はOK、必要ならここも0にできます */
+  font-size: 0.75rem;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;         /* 中央寄せ */
+  transition: opacity 0.5s ease;
+  opacity: 1;
+  margin: 0;                  /* 下の余白を確実にゼロに */
+}
+
+/* 最初は非表示 */
+.hidden-footer {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* スマホ用（必要なら） */
+@media screen and (max-width: 480px) {
+  .smart-footer {
+    font-size: 12px;
+    padding: 8px 0;
+  }
+}
+
+
+
+
+
+
+
